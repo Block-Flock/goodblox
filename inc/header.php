@@ -37,19 +37,7 @@ if (is_array($_USER) && $_USER['BC'] == 'BC') {
 <link id="ctl00_Imports" rel="stylesheet" type="text/css" href="/AllCSSnew.css"/><link id="ctl00_Favicon" rel="Shortcut Icon" type="image/ico" href="<?php echo $siteurl; ?>/favicon.ico"/><meta name="author" content="<?=$sitename?> Corporation"/><meta name="keywords" content="game, video game, building game, construction game, online game, LEGO game, LEGO, MMO, MMORPG, virtual world, avatar chat"/><meta name="robots" content="all"/></head>
   <body>
       <div id="Container">
-<div id="">
-     <script type="text/javascript"><!--
-  <h1>oops </h1>
-      google_ad_client = "pub-2247123265392502";
-      google_ad_width = 728;
-      google_ad_height = 90;
-      google_ad_format = "728x90_as";
-      google_ad_type = "text_image";
-      google_ad_channel = "";
-      //-->
-    </script>
-    <script type="text/javascript" src="pagead/show_ads.js"></script>
-</div>
+
         <div id="Header">
           <div id="Banner">
             <div id="Options">
