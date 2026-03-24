@@ -1,0 +1,14 @@
+# Laravel  .gitignore
+
+# Node modules
+yarn-error.log
+node_modules/
+
+# Composer vendor files
+/vendor
+
+# Environment file
+.env
+
+# Storage directory
+/storage/
