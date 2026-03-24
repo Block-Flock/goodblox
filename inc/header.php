@@ -9,7 +9,7 @@ $date=date("Y-m-d");
 ?>
 
 <?php
-if ($_USER['BC'] == 'BC') {
+if (is_array($_USER) && $_USER['BC'] == 'BC') {
     if ($_USER['BCExpire'] == $date) {
         $removebc = 'None';
         $sql = "UPDATE users SET BC = :removebc WHERE id = :userid";

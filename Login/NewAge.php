@@ -97,7 +97,7 @@ if ($response != null && $response->success) {
       }
 
       // Insert user into database
-      $sql = "INSERT INTO users (id, username, email, password, referral) VALUES (NULL, :username, :email, :password, :referral)";
+      $sql = "INSERT INTO users (username, email, password, referral) VALUES (:username, :email, :password, :referral)";
       $stmt = $conn->prepare($sql);
       $stmt->bindParam(':username', $username);
       $stmt->bindParam(':email', $email);

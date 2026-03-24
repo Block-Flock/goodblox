@@ -20,7 +20,7 @@ $id = intval($id);
 
                     $thispagefirstresult = ($page-1)*$resultsperpage;
                     
-$fr = $conn->query("SELECT * FROM forum WHERE reply_to='$id' LIMIT ".$thispagefirstresult.",".$resultsperpage) or die($conn->errorInfo());
+$fr = $conn->query("SELECT * FROM forum WHERE reply_to='$id' LIMIT ".$resultsperpage." OFFSET ".$thispagefirstresult) or die($conn->errorInfo());
 
 $fq = $conn->query("SELECT * FROM forum WHERE id='$id'") or die($pdo->errorInfo());
 

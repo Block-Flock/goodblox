@@ -69,9 +69,7 @@ if ($is_limited_account) {
           } else {
 
                 $tim = time();
-$stmt = $conn->prepare("INSERT INTO `forum`
-        (`id`, `author`, `reply_to`, `title`, `content`, `time_posted`, `category`)
-        VALUES (NULL, ?, '0', ?, ?, ?, ?)");
+$stmt = $conn->prepare("INSERT INTO forum (author, reply_to, title, content, time_posted, category) VALUES (?, 0, ?, ?, ?, ?)");
 $stmt->execute(array($_USER['id'], $title, $content, $tim, $topic));
 $insid = $conn->lastInsertId();
 die("<script>document.location = \"/Forum/ShowPost.php?id=$insid\"</script>");

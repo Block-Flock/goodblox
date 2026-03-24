@@ -238,7 +238,7 @@ $friendcountm = $friendnew->rowCount();
             $page = 1;
             $thispagefirstresult = ($page-1)*$resultsperpage;
 
-$friendq = $conn->prepare("SELECT * FROM friends WHERE (`user_from` = :user_id AND `arefriends`='1') OR (`user_to` = :user_id AND `arefriends`='1') LIMIT :pagefirstresult, :resultsperpage");
+$friendq = $conn->prepare("SELECT * FROM friends WHERE (`user_from` = :user_id AND `arefriends`='1') OR (`user_to` = :user_id AND `arefriends`='1') LIMIT :resultsperpage OFFSET :pagefirstresult");
 $friendq->bindParam(':user_id', $_USER['id'], PDO::PARAM_INT);
 $friendq->bindParam(':pagefirstresult', $thispagefirstresult, PDO::PARAM_INT);
 $friendq->bindParam(':resultsperpage', $resultsperpage, PDO::PARAM_INT);
@@ -272,7 +272,7 @@ $friend_online->bindParam(':friendid', $friendid, PDO::PARAM_INT);
 $friend_online->execute() or die(print_r($conn->errorInfo(), true));
 $finfo = $friend_online->fetch(PDO::FETCH_ASSOC);
 
-$usr = $conn->prepare("SELECT * FROM users WHERE id=:friendid LIMIT :pagefirstresult,:resultsperpage");
+$usr = $conn->prepare("SELECT * FROM users WHERE id=:friendid LIMIT :resultsperpage OFFSET :pagefirstresult");
 $usr->bindParam(':friendid', $friendid, PDO::PARAM_INT);
 $usr->bindParam(':pagefirstresult', $thispagefirstresult, PDO::PARAM_INT);
 $usr->bindParam(':resultsperpage', $resultsperpage, PDO::PARAM_INT);

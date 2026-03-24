@@ -49,7 +49,7 @@ if (isset($_POST['subject'])) {
 
     $currenttimelol = time();
 
-    $stmt = $conn->prepare("INSERT INTO `messages` (`id`, `user_from`, `user_to`, `subject`, `content`, `datesent`) VALUES (NULL, :user_from, :user_to, :subject, :content, :datesent)");
+    $stmt = $conn->prepare("INSERT INTO messages (user_from, user_to, subject, content, datesent) VALUES (:user_from, :user_to, :subject, :content, :datesent)");
     $stmt->bindValue(':user_from', $_USER['id']);
     $stmt->bindValue(':user_to', $uid);
     $stmt->bindValue(':subject', $subject);

@@ -461,7 +461,7 @@ DIV.popupItem
   </tr>
       <tr>
       <?php
-                $poststmt = $conn->query("SELECT * FROM forum WHERE category='$topic' AND reply_to='0' ORDER BY is_pinned DESC, time_posted DESC LIMIT ".$thispagefirstresult.",".$resultsperpage);
+                $poststmt = $conn->query("SELECT * FROM forum WHERE category='$topic' AND reply_to='0' ORDER BY is_pinned DESC, time_posted DESC LIMIT ".$resultsperpage." OFFSET ".$thispagefirstresult);
 while ($post = $poststmt->fetch(PDO::FETCH_ASSOC)) {
     $authorstmt = $conn->query("SELECT * FROM users WHERE id='{$post['author']}'");
     $author = $authorstmt->fetch(PDO::FETCH_ASSOC);

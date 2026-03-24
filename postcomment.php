@@ -6,7 +6,7 @@ $id = $_GET['id'] ?? 0;
 if($isloggedin !== 'yes') {header('location: /login.aspx');}
 if($_SERVER["REQUEST_METHOD"] == 'POST') {
     $content = $_POST["content"];
-    $sql = "INSERT INTO comments (id, userid, assetid, content, time_posted) VALUES (NULL, '".$_USER['id']."', '".$id."', '".$content."', ".time().")";
+    $sql = "INSERT INTO comments (userid, assetid, content, time_posted) VALUES ('".$_USER['id']."', '".$id."', '".$content."', ".time().")";
     if ($conn->query($sql) === TRUE) {
       echo "Succesfully posted a comment!";
     } else {

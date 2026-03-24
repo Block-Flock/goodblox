@@ -441,7 +441,7 @@ if ($friendcount < 1) {
 
       // <iframe height=\"100\" width=\"100\" src=\"http://voblox.ga/api/getAvatar.php?id={$friendid}&size=85\" frameborder=\"0\" scrolling=\"no\"></iframe>
 
-      $usr = $conn->prepare("SELECT * FROM users WHERE id=:friendid LIMIT :thispagefirstresult,:resultsperpage");
+      $usr = $conn->prepare("SELECT * FROM users WHERE id=:friendid LIMIT :resultsperpage OFFSET :thispagefirstresult");
       $usr->bindParam(':friendid', $friendid, PDO::PARAM_INT);
       $usr->bindParam(':thispagefirstresult', $thispagefirstresult, PDO::PARAM_INT);
       $usr->bindParam(':resultsperpage', $resultsperpage, PDO::PARAM_INT);
@@ -491,7 +491,7 @@ if ($friendcount < 1) {
 
     $thispagefirstresult = ($page - 1) * $resultsperpage;
 
-    $friendpage = $conn->prepare("SELECT * FROM friends WHERE (`user_from` = :user_id AND `arefriends`='1') OR (`user_to` = :user_id AND `arefriends`='1') LIMIT :start, :limit");
+    $friendpage = $conn->prepare("SELECT * FROM friends WHERE (`user_from` = :user_id AND `arefriends`='1') OR (`user_to` = :user_id AND `arefriends`='1') LIMIT :limit OFFSET :start");
     $friendpage->bindParam(":user_id", $user['id'], PDO::PARAM_INT);
     $friendpage->bindParam(":start", $thispagefirstresult, PDO::PARAM_INT);
     $friendpage->bindParam(":limit", $resultsperpage, PDO::PARAM_INT);

@@ -16,7 +16,7 @@
             <span><a id="ctl00_hlNews" class="MenuItem" href="<?php echo $siteurl; ?>/ServerError.aspx" target="_blank">News</a>&nbsp;<a id="ctl00_hlNewsFeed" href="http://blog.<?php echo $sitedomain; ?>/index.html"><img src="<?php echo $siteurl; ?>/images/feed-icon-14x14.png" border="0"/></a></span>
             <span class="Separator">&nbsp;|&nbsp;</span>
             <span><a id="ctl00_hlForum" class="MenuItem" href="/Help.php">Help</a></span>
-            <?php if($_USER['USER_PERMISSIONS'] == 'Administrator') {echo '<span class="Separator">&nbsp;|&nbsp;</span>
+            <?php if(is_array($_USER) && $_USER['USER_PERMISSIONS'] == 'Administrator') {echo '<span class="Separator">&nbsp;|&nbsp;</span>
             <span><a id="ctl00_hlMyRoblox" class="MenuItem" href="'.$siteurl.'/admin">Admin</a></span>';} ?>
 
            </div>
@@ -26,6 +26,7 @@
 <?php if($_GLOBAL['maintenanceEnabled'] == 'yes') {header('location: '.$siteurl.'/maintenance');} ?>
 
 <?php
+$ipbansresultCheck = 0;
 if ($ipbansresultCheck > 0) {
     while ($ipbansrow = $ipbansresult->fetch(PDO::FETCH_ASSOC)) {?>
        <div style="margin: 100px auto 100px auto; width: 500px; border: black thin solid; padding: 22px; color: black;">

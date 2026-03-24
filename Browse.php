@@ -52,7 +52,7 @@ if ($offset < 1) {
 
             $thispagefirstresult = ($page-1)*$resultsperpage;
       
-            $stmt = $conn->prepare("SELECT * FROM users WHERE username LIKE '%$searchusername%' ORDER BY lastseen DESC LIMIT ".$thispagefirstresult.",".$resultsperpage);
+            $stmt = $conn->prepare("SELECT * FROM users WHERE username LIKE '%$searchusername%' ORDER BY lastseen DESC LIMIT ".$resultsperpage." OFFSET ".$thispagefirstresult);
             $stmt->execute();
             
     
