@@ -1,38 +1,41 @@
 <?php
 
-namespace App\\Models;
+namespace App\Models;
 
-use Illuminate\\Database\\Eloquent\\Model;
-use Illuminate\\Database\\Eloquent\\Relations;\n
+use Database\Factories\UserFactory;
+use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Attributes\Hidden;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class User extends Model
+#[Fillable([
+    'username', 'email', 'password', 'thumbnail', 'blurb', 'lastseen',
+    'bantype', 'banreason', 'bandate', 'unbantime', 'USER_PERMISSIONS',
+    'BC', 'BCExpire', 'robux', 'tix', 'next_tix_reward', 'membership_type',
+    'next_bricks_award', 'accountcode', 'ip', 'defaultmaplocationfolder',
+    'headcolor', 'torsocolor', 'leftarmcolor', 'rightarmcolor', 'leftlegcolor', 'rightlegcolor',
+    'avatar_hash', 'join_date', 'time_joined', 'is_banned',
+])]
+#[Hidden(['password', 'remember_token'])]
+class User extends Authenticatable
 {
-    // Table associated with the model
-    protected $table = 'users';
+    /** @use HasFactory<UserFactory> */
+    use HasFactory, Notifiable;
 
-    // Define relationships
-    public function games() : Relations\\HasMany
+    public function getAuthIdentifierName(): string
     {
-        return $this->hasMany(Game::class);
+        return 'username';
     }
 
-    public function assets() : Relations\\HasMany
+    protected function casts(): array
     {
-        return $this->hasMany(Asset::class);
-    }
-
-    public function messages() : Relations\\HasMany
-    {
-        return $this->hasMany(Message::class);
-    }
-
-    public function friends() : Relations\\BelongsToMany
-    {
-        return $this->belongsToMany(User::class, 'friends', 'user_id', 'friend_id');
-    }
-
-    public function items() : Relations\\HasMany
-    {
-        return $this->hasMany(Item::class);
+        return [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
+            'join_date' => 'datetime',
+            'is_banned' => 'boolean',
+            'time_joined' => 'integer',
+        ];
     }
 }
